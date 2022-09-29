@@ -20,6 +20,7 @@ if (process.env.NODE_ENV === 'development') {
 console.log('current base URL:', baseURL)
 
 
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -27,6 +28,22 @@ class App extends Component {
       jobs: []
     }
   }
+
+  getJobs = () => {
+    fetch(baseURL + '/jobs')
+    .then((res) => {
+      if (res.status === 200) {
+        return res.json();
+      } else {
+        return [];
+      }
+    })
+    .then((data) => {
+      console.log(data);
+      this.setState({jobs: data.jobs})
+    })
+  }
+
 
   render() {
     return (

@@ -1,5 +1,5 @@
-import { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import React, { Component } from 'react';
+import { BrowserRouter, BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 
 
@@ -8,15 +8,26 @@ import ShowJobList from './components/ShowJobList'
 import ShowJobDetails from './components/ShowJobDetails'
 import UpdateJobInfo from './components/UpdateJobInfo'
 
-class App extends Component{
+class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      jobs: []
+    }
+  }
+
   render() {
     return (
-      <Router>
-        <Route exact path='/' component={ShowJobList} />
-        <Route exact path='/create-job' component={CreateJob}/>
-        <Route exact path='/show-job/:id' component={ShowJobDetails}/>
-        <Route exact path='/edit-job/:id' component={UpdateJobInfo}/>
-      </Router>
+      <div className='container'>
+      <h1> Welcome to Applied! </h1>
+      </div>
+
+      // <Router>
+      //   <Route exact path='/' component={ShowJobList} />
+      //   <Route exact path='/create-job' component={CreateJob}/>
+      //   <Route exact path='/show-job/:id' component={ShowJobDetails}/>
+      //   <Route exact path='/edit-job/:id' component={UpdateJobInfo}/>
+      // </Router>
     )
   }
 }

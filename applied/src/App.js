@@ -29,6 +29,10 @@ class App extends Component {
     }
   }
 
+  componentDidMount(){
+    this.getJobs()
+  }
+
   getJobs = () => {
     fetch(baseURL + '/jobs')
     .then((res) => {

@@ -10,44 +10,46 @@ class ShowJobList extends Component {
             job: []
         }
     }
-}
-render() {
-    const job = this.state.job
-    let jobList;
+    
+    render() {
+        const job = this.state.job
+        let jobList;
+        
+        if (!job) {
+            jobList = "No Applications have been added!"
+        } else {
+            jobList = job.map((Jobs, k) =>
+            <JobCard Jobs={Jobs} key={k} />
+            )
+        }
+        
+        return (
+                <div className="ShowJobList">
+                <div>
+                    <div>
+                        <div>
+                            <br/>
+                            <h1>Applications</h1>
+                        </div>
+                        <div>
+                            <Link to="/CreateJob">
+                                Add an Application!
+                            </Link>
+                            <br/>
+                        </div>
 
-    if (!job) {
-        jobList = "No Applications have been added!"
-    } else {
-        jobList = job.map((Jobs, k) =>
-        <JobCard Jobs={Jobs} key={k} />
+                    </div>
+
+                    <div>
+                        {jobList}
+                    </div>
+
+                </div>
+
+            </div>
         )
     }
 }
 
-return (
-    <div className="ShowJobList">
-        <div>
-            <div>
-                <div>
-                    <br/>
-                    <h1>Applications</h1>
-                </div>
-                <div>
-                    <Link to="/CreateJob">
-                        Add an Application!
-                    </Link>
-                    <br/>
-                </div>
-
-            </div>
-
-            <div>
-                {jobList}
-            </div>
-
-        </div>
-
-    </div>
-)
 
 export default ShowJobList

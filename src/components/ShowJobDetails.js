@@ -88,3 +88,4 @@ class ShowJobDetails extends Component {
         )
     }
 }
+export default ShowJobDetails 

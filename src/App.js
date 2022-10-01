@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // eslint-disable-next-line
 import { BrowserRouter, BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
+import Register from './Nav/Register';
 
 
 // import CreateJob from './components/CreateJob'
@@ -53,6 +54,7 @@ class App extends Component {
     return (
       <div className='container'>
       <h1> Welcome to Applied! </h1>
+      <Register />
       </div>
 
       // <Router>

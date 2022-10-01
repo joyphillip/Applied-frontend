@@ -7,7 +7,7 @@ import './App.css';
 // import CreateJob from './components/CreateJob'
 // import ShowJobList from './components/ShowJobList'
 // import ShowJobDetails from './components/ShowJobDetails'
-// import UpdateJobInfo from './components/UpdateJobInfo'
+import UpdateJobInfo from './components/UpdateJobInfo'
 
 // let baseURL = ''
 

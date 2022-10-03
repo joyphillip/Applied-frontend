@@ -39,6 +39,11 @@ class App extends Component {
     })
   }
 
+  handleAddJob = (job) => {
+    const copyJobs = [...this.state.jobs]
+    copyJobs.unshift(job)
+    this.setState({jobs: copyJobs})
+  }
 
   render() {
     return (

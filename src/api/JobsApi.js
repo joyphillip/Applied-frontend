@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import Jobinfo from './Jobinfo';
 
+
 class JobsApi extends Component {
   constructor(props) {
     super(props)
@@ -40,7 +41,7 @@ class JobsApi extends Component {
   }
 
   render() {
-    console.log(this.state)
+    // console.log(this.state)
     return (
       <div>
         <form onSubmit={this.handleSubmit}>

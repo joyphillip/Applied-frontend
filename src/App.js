@@ -3,12 +3,15 @@ import React, { Component } from 'react';
 import { BrowserRouter, BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import Register from './Nav/Register';
+import JobsApi from "./api/JobsApi"
+
 
 
 // import CreateJob from './components/CreateJob'
 // import ShowJobList from './components/ShowJobList'
 // import ShowJobDetails from './components/ShowJobDetails'
 import UpdateJobInfo from './components/UpdateJobInfo'
+
 
 // let baseURL = ''
 
@@ -55,6 +58,8 @@ class App extends Component {
       <div className='container'>
       <h1> Welcome to Applied! </h1>
       <Register />
+      <JobsApi />
+      
       </div>
 
       // <Router>

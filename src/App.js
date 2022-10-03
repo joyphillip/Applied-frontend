@@ -50,13 +50,14 @@ class App extends Component {
       <div className='container'>
       <h1> Welcome to Applied! </h1>
       {/* <Register /> */}
-      {<CreateJob/>}
+      {<CreateJob handleAddJob={this.handleAddJob}/>}
       <table>
       <th>Company</th>
       <th>Job Title</th>
       <th>Salary</th>
-      <th>Date </th>
+      <th>Date</th>
       <th>Offer?</th>
+      <th>Notes</th>
         <tbody>
           {this.state.jobs.map(job => {
             return (
@@ -66,6 +67,7 @@ class App extends Component {
                 <td> {job.salary}</td>
                 <td> {job.date} </td>
                 <td> {job.offer}</td>
+                <td> {job.notes}</td>
               </tr>
             )
           })}

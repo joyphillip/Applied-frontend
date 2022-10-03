@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // eslint-disable-next-line
 import './App.css';
 import CreateJob from './components/CreateJob';
+import JobList from './components/JobList';
 // import Register from './Nav/Register';
 // import CreateJob from './components/CreateJob';
 
@@ -51,28 +52,7 @@ class App extends Component {
       <h1> Welcome to Applied! </h1>
       {/* <Register /> */}
       {<CreateJob handleAddJob={this.handleAddJob}/>}
-      <table>
-      <th>Company</th>
-      <th>Job Title</th>
-      <th>Salary</th>
-      <th>Date</th>
-      <th>Offer?</th>
-      <th>Notes</th>
-        <tbody>
-          {this.state.jobs.map(job => {
-            return (
-              <tr key={job._id}>
-                <td> {job.company}</td>
-                <td> {job.job}</td>
-                <td> {job.salary}</td>
-                <td> {job.date} </td>
-                <td> {job.offer}</td>
-                <td> {job.notes}</td>
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
+      <JobList/>
       </div>
     )
   }

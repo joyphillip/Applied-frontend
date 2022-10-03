@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import './App.css';
 import CreateJob from './components/CreateJob';
 // import Register from './Nav/Register';
-import JobCard from './components/JobCard';
 // import CreateJob from './components/CreateJob';
 
 // import ShowJobList from './components/ShowJobList'
@@ -46,7 +45,6 @@ class App extends Component {
       <div className='container'>
       <h1> Welcome to Applied! </h1>
       {/* <Register /> */}
-      {/* {<JobCard/>} */}
       {<CreateJob/>}
       <table>
       <th>Company</th>

@@ -1,26 +1,17 @@
 import React, { Component } from 'react';
 // eslint-disable-next-line
-import { BrowserRouter, BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
-import Register from './Nav/Register';
+import CreateJob from './components/CreateJob';
+// import Register from './Nav/Register';
+import JobCard from './components/JobCard';
+// import CreateJob from './components/CreateJob';
 
-
-// import CreateJob from './components/CreateJob'
 // import ShowJobList from './components/ShowJobList'
 // import ShowJobDetails from './components/ShowJobDetails'
-import UpdateJobInfo from './components/UpdateJobInfo'
-
-// let baseURL = ''
-
-// if (process.env.NODE_ENV === 'development') {
-//   baseURL = 'http://localhost:3000'
-// } else {
-  let baseURL = process.env.REACT_APP_BACKEND_URL
-// }
-
-// console.log('current base URL:', baseURL)
+// import UpdateJobInfo from './components/UpdateJobInfo'
 
 
+let baseURL = process.env.REACT_APP_BACKEND_URL
 
 class App extends Component {
   constructor(props) {
@@ -54,15 +45,30 @@ class App extends Component {
     return (
       <div className='container'>
       <h1> Welcome to Applied! </h1>
-      <Register />
+      {/* <Register /> */}
+      {/* {<JobCard/>} */}
+      {<CreateJob/>}
+      <table>
+      <th>Company</th>
+      <th>Job Title</th>
+      <th>Salary</th>
+      <th>Date </th>
+      <th>Offer?</th>
+        <tbody>
+          {this.state.jobs.map(job => {
+            return (
+              <tr key={job._id}>
+                <td> {job.company}</td>
+                <td> {job.job}</td>
+                <td> {job.salary}</td>
+                <td> {job.date} </td>
+                <td> {job.offer}</td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
       </div>
-
-      // <Router>
-      //   <Route exact path='/' component={ShowJobList} />
-      //   <Route exact path='/create-job' component={CreateJob}/>
-      //   <Route exact path='/show-job/:id' component={ShowJobDetails}/>
-      //   <Route exact path='/edit-job/:id' component={UpdateJobInfo}/>
-      // </Router>
     )
   }
 }

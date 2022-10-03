@@ -1,6 +1,4 @@
-import { format } from "path";
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import '../App.css'
 
 class CreateJob extends Component {
@@ -21,7 +19,7 @@ class CreateJob extends Component {
     
     onSubmit = (e) => {
         e.preventDefault()
-        fetch(baseURL + '/jobs', {
+        fetch('http://localhost:3000' + '/jobs', {
             method: 'POST',
             body: JSON.stringify({
                 company: this.state.company,
@@ -45,19 +43,11 @@ class CreateJob extends Component {
                 notes:''
             })
           })
-        // const data = {
-        //     company: this.state.company,
-        //     job: this.state.job,
-        //     salary: this.state.salary,
-        //     date: this.state.date,
-        //     offer: this.state.date,
-        //     notes: this.state.notes
-        // }
-
     }
+
     render(){
         return (
-            <form>
+            <form onSubmit={this.onSubmit}>
                 <label htmlFor="company"></label>
                 <input type="text" id="company" name="company" onChange={this.onChange} value={this.state.company} placeholder="Company Name?"/>
                 <label htmlFor="job"></label>
@@ -66,10 +56,11 @@ class CreateJob extends Component {
                 <input type="text" id="salary" name="salary" onChange={this.onChange} value={this.state.salary} placeholder="Salary!"/>
                 <label htmlFor="date"></label>
                 <input type="text" id="date" name="date" onChange={this.onChange} value={this.state.date} placeholder="Date Applied?"/>
-                <label htmlFor="offer"></label>
-                <input type="text" id="offer" name="offer" onChange={this.onChange} value={this.state.offer} placeholder="Did You Recieve an Offer Yet?"/>
+                <label htmlFor="offer">Offer?</label>
+                <input type="checkbox" id="offer" name="offer" onChange={this.onChange} value={this.state.offer}/>
                 <label htmlFor="notes"></label>
                 <input type="text" id="notes" name="notes" onChange={this.onChange} value={this.state.notes} placeholder="Add Notes!"/>
+                <input type="submit" value="Add a New Job"/>
             </form>
         )
     }

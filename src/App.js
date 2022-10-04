@@ -2,12 +2,9 @@ import React, { Component } from 'react';
 // eslint-disable-next-line
 import './App.css';
 import CreateJob from './components/CreateJob';
+import JobList from './components/JobList';
 // import Register from './Nav/Register';
-// import CreateJob from './components/CreateJob';
 
-// import ShowJobList from './components/ShowJobList'
-// import ShowJobDetails from './components/ShowJobDetails'
-// import UpdateJobInfo from './components/UpdateJobInfo'
 
 
 let baseURL = process.env.REACT_APP_BACKEND_URL
@@ -45,34 +42,40 @@ class App extends Component {
     this.setState({jobs: copyJobs})
   }
 
+  // handleToggleOffer = (job) => {
+  //   fetch(baseURL + '/jobs/' + job._id, {
+  //     method:'PUT',
+  //     body: JSON.stringify({offer: !job.offer}),
+  //     headers: {
+  //       'Content-type' : 'application/json'
+  //     }
+  //   }).then(res => res.json())
+  //   .then(resJson => {
+  //     const copyJobs = [...this.state.jobs]
+  //     const findIndex = this.state.jobs.findIndex(job => job._id === resJson._id)
+  //     copyJobs[findIndex].offer = resJson.offer
+  //     this.setState({jobs: copyJobs})
+  //   })
+  // }
+
+  handleDeleteJob = (id) => {
+    fetch(baseURL + '/jobs/' + id, {
+      method: 'DELETE'
+    }).then( res => {
+      const findIndex = this.state.jobs.findIndex(job => job._id === id)
+      const copyJobs = [...this.state.jobs]
+      copyJobs.splice(findIndex, 1)
+      this.setState({jobs: copyJobs})
+    })
+  }
+
   render() {
     return (
       <div className='container'>
       <h1> Welcome to Applied! </h1>
       {/* <Register /> */}
       {<CreateJob handleAddJob={this.handleAddJob}/>}
-      <table>
-      <th>Company</th>
-      <th>Job Title</th>
-      <th>Salary</th>
-      <th>Date</th>
-      <th>Offer?</th>
-      <th>Notes</th>
-        <tbody>
-          {this.state.jobs.map(job => {
-            return (
-              <tr key={job._id}>
-                <td> {job.company}</td>
-                <td> {job.job}</td>
-                <td> {job.salary}</td>
-                <td> {job.date} </td>
-                <td> {job.offer}</td>
-                <td> {job.notes}</td>
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
+      <JobList />
       </div>
     )
   }

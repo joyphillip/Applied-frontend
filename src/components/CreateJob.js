@@ -2,31 +2,32 @@ import React, { Component } from "react";
 import '../App.css'
 
 class CreateJob extends Component {
-    constructor() {
-        super();
-        this.state = {
+    constructor(props) {
+        super(props);
+        this.state = ({
             company: '',
             job: '',
             salary: '',
             date: '',
             offer:'',
             notes:''
-        }
+        })
     }
+
     onChange = (e) => {
         this.setState({ [e.target.name]: e.target.value })
     }
     
     onSubmit = (e) => {
         e.preventDefault()
-        fetch('http://localhost:3000' + '/jobs', {
+        fetch('http://localhost:3000/jobs', {
             method: 'POST',
             body: JSON.stringify({
                 company: this.state.company,
                 job: this.state.job,
                 salary: this.state.salary,
                 date: this.state.date,
-                offer: this.state.date,
+                offer: this.state.offer,
                 notes: this.state.notes
             }), 
             headers: {
@@ -34,7 +35,7 @@ class CreateJob extends Component {
             }
         }).then (res => res.json())
           .then (resJson => {
-            console.log('createJob - resJson, resJson')
+            console.log('NewJob - resJson', resJson)
             this.props.handleAddJob(resJson)
             this.setState({
                 company: '',
@@ -59,7 +60,7 @@ class CreateJob extends Component {
                 <label htmlFor="date"></label>
                 <input type="text" id="date" name="date" onChange={this.onChange} value={this.state.date} placeholder="Date Applied?"/>
                 <label htmlFor="offer">Offer?</label>
-                <input type="checkbox" id="offer" name="offer" onChange={this.onChange} value={this.state.offer}/>
+                <input type="text" id="offer" name="offer" onChange={this.onChange} value={this.state.offer} placeholder="Y/N"/>
                 <label htmlFor="notes"></label>
                 <input type="text" id="notes" name="notes" onChange={this.onChange} value={this.state.notes} placeholder="Add Notes!"/>
                 <input type="submit" value="Add a New Job"/>

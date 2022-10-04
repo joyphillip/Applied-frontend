@@ -10,6 +10,8 @@ table {
 th {
   text-align: center;
   font-size: 20px;
+  border-collapse: collapse;
+  margin: 0 auto;
 }
 tr {
   margin: 5px;

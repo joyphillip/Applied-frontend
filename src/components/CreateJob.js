@@ -36,7 +36,7 @@ class CreateJob extends Component {
         }).then (res => res.json())
           .then (resJson => {
             console.log('NewJob - resJson', resJson)
-            this.props.handleAddJob(resJson)
+            // this.props.handleAddJob(resJson)
             this.setState({
                 company: '',
                 job: '',

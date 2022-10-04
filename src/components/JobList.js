@@ -27,6 +27,35 @@ class JobList extends Component {
         })
       }
 
+      handleUpdateJob = (id) => {
+        fetch('http://localhost:3000/jobs/' + id, {
+            method: 'PUT',
+            body: JSON.stringify({
+                company: this.state.company,
+                job: this.state.job,
+                salary: this.state.salary,
+                date: this.state.date,
+                offer: this.state.offer,
+                notes: this.state.notes
+            }), 
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then (res => res.json())
+          .then (resJson => {
+            console.log('UpdatedJob - resJson', resJson)
+            this.setState({
+                company: '',
+                job: '',
+                salary: '',
+                date: '',
+                offer:'',
+                notes:''
+            })
+          })
+    }
+      
+
       handleDeleteJob = (id) => {
         fetch('http://localhost:3000/jobs/' + id, {
           method: 'DELETE'
@@ -60,6 +89,9 @@ class JobList extends Component {
                 <td> {job.date} </td>
                 <td> {job.offer}</td>
                 <td> {job.notes}</td>
+                <td onClick={()=> this.handleUpdateJob(job._id)}>
+                <button> Update </button> 
+                </td>
                 <td onClick={()=> this.handleDeleteJob(job._id)}> ❌ </td>
               </tr>
             )

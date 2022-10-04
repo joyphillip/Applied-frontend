@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 // eslint-disable-next-line
 import { BrowserRouter, BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
-import Register from './Nav/Register';
+// import Register from './Nav/Register';
 import JobsApi from "./api/JobsApi"
+import Nav from './Nav/Nav';
 
 
 
@@ -37,8 +38,48 @@ class App extends Component {
     this.getJobs()
   }
 
+  loginUser = (e) => {
+    e.preventDefault()
+    fetch(baseURL + '/users/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        username: e.target.username.value,
+        password: e.target.password.value
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: "include"
+    }).then(res => res.json())
+    .then(resJson => {
+      console.log(resJson)
+      this.getJobs()
+    })
+  }
+
+  register = (e) => {
+    e.preventDefault()
+    fetch(baseURL + '/users/signup', {
+      method: 'POST',
+      body: JSON.stringify({
+        username: e.target.username.value,
+        password: e.target.password.value
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(res => res.json())
+    .then(resJson => {
+      console.log(resJson)
+      this.getJobs()
+    })
+  }
+
+
   getJobs = () => {
-    fetch(baseURL + '/jobs')
+    fetch(baseURL + '/jobs', {
+      credentials: "include"
+    })
     .then((res) => {
       if (res.status === 200) {
         return res.json();
@@ -48,18 +89,24 @@ class App extends Component {
     })
     .then((data) => {
       console.log(data);
-      this.setState({jobs: data.jobs})
+      if (data === []) {
+        this.setState({ jobs: data})
+      } else {
+        this.setState({ jobs: data.jobs });
+      }
     })
   }
+
+
 
 
   render() {
     return (
       <div className='container'>
       <h1> Welcome to Applied! </h1>
-      <Register />
-      <JobsApi />
-      
+      <Nav loginUser={this.loginUser} register={this.register}/>
+      {/* <JobsApi /> */}
+
       </div>
 
       // <Router>

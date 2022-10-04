@@ -13,7 +13,7 @@ class JobList extends Component {
       }
     
       getJobs = () => {
-        fetch('http://localhost:3000' + '/jobs')
+        fetch('http://localhost:3000/jobs')
         .then((res) => {
           if (res.status === 200) {
             return res.json();
@@ -24,6 +24,17 @@ class JobList extends Component {
         .then((data) => {
           console.log(data);
           this.setState({jobs: data.jobs})
+        })
+      }
+
+      handleDeleteJob = (id) => {
+        fetch('http://localhost:3000/jobs/' + id, {
+          method: 'DELETE'
+        }).then( res => {
+          const findIndex = this.state.jobs.findIndex(job => job._id === id)
+          const copyJobs = [...this.state.jobs]
+          copyJobs.splice(findIndex, 1)
+          this.setState({jobs: copyJobs})
         })
       }
 
@@ -42,13 +53,14 @@ class JobList extends Component {
                 <tbody>
                 {this.state.jobs.map(job => {
             return (
-              <tr>
+              <tr key={job._id}>
                 <td> {job.company}</td>
                 <td> {job.job}</td>
                 <td> {job.salary}</td>
                 <td> {job.date} </td>
                 <td> {job.offer}</td>
                 <td> {job.notes}</td>
+                <td onClick={()=> this.handleDeleteJob(job._id)}> ❌ </td>
               </tr>
             )
           })}

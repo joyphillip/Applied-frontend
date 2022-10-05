@@ -5,6 +5,7 @@ import CreateJob from './components/CreateJob';
 import JobList from './components/JobList';
 // import Register from './Nav/Register';
 import Nav from './Nav/Nav.js'
+import JobsApi from './api/JobsApi'
 
 
 
@@ -120,10 +121,10 @@ class App extends Component {
     return (
       <div className='container'>
       <h1> Welcome to Applied! </h1>
-      <Nav loginUser={this.loginUser} register={this.register}/>
-      {/* <Register /> */}
+      {/* <Nav loginUser={this.loginUser} register={this.register}/> */}
       {<CreateJob handleAddJob={this.handleAddJob}/>}
       <JobList />
+      <JobsApi />
       </div>
     )
   }

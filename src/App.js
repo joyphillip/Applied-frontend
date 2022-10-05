@@ -63,9 +63,7 @@ class App extends Component {
 
 
   getJobs = () => {
-    fetch(baseURL + '/jobs', {
-      credentials: "include"
-    })
+    fetch(baseURL + '/jobs')
     .then((res) => {
       if (res.status === 200) {
         return res.json();
@@ -104,6 +102,21 @@ class App extends Component {
   //     this.setState({jobs: copyJobs})
   //   })
   // }
+  handleToggleOffer = (job) => {
+    fetch('http://localhost:3000/jobs/' + job._id, {
+      method: 'PUT',
+      body: JSON.stringify({offer: !job.offer}),
+      headers: {
+        'Content-Type' : 'application/json'
+  }
+    }).then(res => res.json())
+    .then(resJson => {
+     const copyJobs = [...this.state.jobs]
+      const findIndex = this.state.jobs.findIndex((job) => job._id === resJson._id)
+      copyJobs[findIndex].offer = resJson.offer
+      this.setState({jobs: copyJobs})
+    })
+  }
 
   handleEditJobs = (job) => {
     fetch(baseURL + '/jobs/' + job._id, {
@@ -152,7 +165,7 @@ class App extends Component {
       <h1> Welcome to Applied! </h1>
       {/* <Nav loginUser={this.loginUser} register={this.register}/> */}
       {<CreateJob handleAddJob={this.handleAddJob}/>}
-      <JobList />
+      <JobList handleToggleOffer={this.handleToggleOffer}/>
       <JobsApi />
       </div>
     )

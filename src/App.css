@@ -38,7 +38,10 @@ td:nth-of-type(6) {
 }
 
 .offer {
-  color: rgb(18, 118, 66)
+  color: rgb(18, 118, 66);
+  font-weight: bold;
+  
+  
 }
 
 

@@ -37,6 +37,9 @@ td:nth-of-type(6) {
   cursor: pointer;
 }
 
+.offer {
+  color: rgb(18, 118, 66)
+}
 
 
 .App-logo {

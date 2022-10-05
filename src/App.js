@@ -72,7 +72,7 @@ class App extends Component {
   render() {
     return (
       <div className='container'>
-      <h1> Welcome to Applied! </h1>
+      <h1 className='head'> Applied. </h1>
       {/* <Register /> */}
       {<CreateJob handleAddJob={this.handleAddJob}/>}
       <JobList />

@@ -40,8 +40,8 @@ class JobList extends Component {
 
     render() {
         return (
-            <table>
-                <caption> All Jobs </caption>
+            <table className='jobForm'>
+                <h2> All Jobs </h2>
                 <tr>
                 <th>Company</th>
                 <th>Job Title</th>
@@ -60,7 +60,7 @@ class JobList extends Component {
                 <td> {job.date} </td>
                 <td> {job.offer}</td>
                 <td> {job.notes}</td>
-                <td onClick={()=> this.handleDeleteJob(job._id)}> ❌ </td>
+                <td className='deleteButton' onClick={()=> this.handleDeleteJob(job._id)}> Delete </td>
               </tr>
             )
           })}

@@ -5,6 +5,7 @@ class Jobinfo extends Component {
     
     return (
       <div>
+         
          <div>
              {/* <h1>Total Results: {this.props.companyName.count}</h1> */}
        
@@ -16,7 +17,7 @@ class Jobinfo extends Component {
 
              <p>Location: {this.props.companyName.results[0].location.display_name}</p>
 
-             <p>Company url: {this.props.companyName.results[0].redirect_url}</p>
+             <p>Company url: {this.props.companyName.results[0].redirect_url}</p> 
 
              <p>Job Title: {this.props.companyName.results[0].title}</p> 
              </div>

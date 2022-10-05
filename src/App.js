@@ -4,6 +4,8 @@ import './App.css';
 import CreateJob from './components/CreateJob';
 import JobList from './components/JobList';
 // import Register from './Nav/Register';
+import Nav from './Nav/Nav.js'
+import JobsApi from './api/JobsApi'
 
 
 
@@ -21,8 +23,48 @@ class App extends Component {
     this.getJobs()
   }
 
+  loginUser = (e) => {
+    e.preventDefault()
+    fetch(baseURL + '/users/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        username: e.target.username.value,
+        password: e.target.password.value
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: "include"
+    }).then(res => res.json())
+    .then(resJson => {
+      console.log(resJson)
+      this.getJobs()
+    })
+  }
+
+  register = (e) => {
+    e.preventDefault()
+    fetch(baseURL + '/users/signup', {
+      method: 'POST',
+      body: JSON.stringify({
+        username: e.target.username.value,
+        password: e.target.password.value
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(res => res.json())
+    .then(resJson => {
+      console.log(resJson)
+      this.getJobs()
+    })
+  }
+
+
   getJobs = () => {
-    fetch(baseURL + '/jobs')
+    fetch(baseURL + '/jobs', {
+      credentials: "include"
+    })
     .then((res) => {
       if (res.status === 200) {
         return res.json();
@@ -32,7 +74,11 @@ class App extends Component {
     })
     .then((data) => {
       console.log(data);
-      this.setState({jobs: data.jobs})
+      if (data === []) {
+        this.setState({ jobs: data})
+      } else {
+        this.setState({ jobs: data.jobs });
+      }
     })
   }
 
@@ -69,13 +115,16 @@ class App extends Component {
     })
   }
 
+
+
   render() {
     return (
       <div className='container'>
       <h1> Welcome to Applied! </h1>
-      {/* <Register /> */}
+      {/* <Nav loginUser={this.loginUser} register={this.register}/> */}
       {<CreateJob handleAddJob={this.handleAddJob}/>}
       <JobList />
+      <JobsApi />
       </div>
     )
   }

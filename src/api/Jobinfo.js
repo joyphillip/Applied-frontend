@@ -17,7 +17,7 @@ class Jobinfo extends Component {
 
              <p>Location: {this.props.companyName.results[0].location.display_name}</p>
 
-             <a href={this.props.companyName.results[0].redirect_url}> Apply Here </a> 
+             <p>Company url: {this.props.companyName.results[0].redirect_url}  </p> 
 
              <p>Job Title: {this.props.companyName.results[0].title}</p> 
              </div>
@@ -32,7 +32,7 @@ class Jobinfo extends Component {
 
              <p>Location: {this.props.companyName.results[1].location.display_name}</p>
 
-             <a href={this.props.companyName.results[1].redirect_url}> Apply Here </a> 
+             <p>Company url: {this.props.companyName.results[1].redirect_url}</p>
 
              <p>Job Title: {this.props.companyName.results[1].title}</p> 
              </div>
@@ -47,7 +47,7 @@ class Jobinfo extends Component {
 
              <p>Location: {this.props.companyName.results[2].location.display_name}</p>
 
-             <a href={this.props.companyName.results[2].redirect_url}> Apply Here </a> 
+             <p>Company url: {this.props.companyName.results[2].redirect_url}</p>
 
              <p>Job Title: {this.props.companyName.results[2].title}</p> 
              </div>
@@ -62,7 +62,7 @@ class Jobinfo extends Component {
 
                 <p>Location: {this.props.companyName.results[3].location.display_name}</p>
 
-                <a href={this.props.companyName.results[3].redirect_url}> Apply Here </a> 
+                <p>Company url: {this.props.companyName.results[3].redirect_url}</p>
 
                 <p>Job Title: {this.props.companyName.results[3].title}</p> 
                 </div>
@@ -77,7 +77,7 @@ class Jobinfo extends Component {
 
                 <p>Location: {this.props.companyName.results[4].location.display_name}</p>
 
-                <a href={this.props.companyName.results[4].redirect_url}> Apply Here </a> 
+                <p>Company url: {this.props.companyName.results[4].redirect_url}</p>
 
                 <p>Job Title: {this.props.companyName.results[4].title}</p> 
                 </div>

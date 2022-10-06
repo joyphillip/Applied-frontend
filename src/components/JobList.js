@@ -28,25 +28,6 @@ class JobList extends Component {
       }
 
 
-
-    handleToggleOffer = (job) => {
-      fetch('http://localhost:3000/jobs/' + job._id, {
-        method: 'PUT',
-        body: JSON.stringify({offer: !job.offer}),
-        headers: {
-          'Content-Type' : 'application/json'
-    }
-      }).then(res => res.json())
-      .then(resJson => {
-        console.log('resJson', resJson)
-       const copyJobs = [...this.state.jobs]
-        const findIndex = this.state.jobs.findIndex((job) => job._id === resJson._id)
-        copyJobs[findIndex].offer = resJson.offer
-        this.setState({jobs: copyJobs})
-      })
-    }
-
-
   handleEditJobs = (job) => {
     fetch('http://localhost:3000/jobs/' + job._id, {
         method: 'PUT',

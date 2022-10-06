@@ -103,33 +103,33 @@ class App extends Component {
     })
   }
 
-  handleEditJobs = (job) => {
-    fetch(baseURL + '/jobs/' + job._id, {
-        method: 'PUT',
-        body: JSON.stringify({
-            company: job.company,
-            job: job.job,
-            salary: job.salary,
-            date: job.date,
-            notes: job.notes
-        }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then((res) => res.json())
-    .then((resJson) => {
-        // console.log(resJson)
-        const copyJobs = [...this.state.jobs];
-        const findIndex = this.state.jobs.findIndex(
-            (job) => job._id === resJson._id
-        );
-        copyJobs[findIndex] = resJson
-        this.setState({
-            jobs: copyJobs,
-        });
-    });
-};
+//   handleEditJobs = (job) => {
+//     fetch(baseURL + '/jobs/' + job._id, {
+//         method: 'PUT',
+//         body: JSON.stringify({
+//             company: job.company,
+//             job: job.job,
+//             salary: job.salary,
+//             date: job.date,
+//             notes: job.notes
+//         }),
+//         headers: {
+//             'Content-Type': 'application/json'
+//         }
+//     })
+//     .then((res) => res.json())
+//     .then((resJson) => {
+//         // console.log(resJson)
+//         const copyJobs = [...this.state.jobs];
+//         const findIndex = this.state.jobs.findIndex(
+//             (job) => job._id === resJson._id
+//         );
+//         copyJobs[findIndex] = resJson
+//         this.setState({
+//             jobs: copyJobs,
+//         });
+//     });
+// };
 
   handleDeleteJob = (id) => {
     fetch(baseURL + '/jobs/' + id, {

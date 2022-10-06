@@ -45,6 +45,35 @@ class JobList extends Component {
         this.setState({jobs: copyJobs})
       })
     }
+
+
+  handleEditJobs = (job) => {
+    fetch('http://localhost:3000/jobs/' + job._id, {
+        method: 'PUT',
+        body: JSON.stringify({
+            company: job.company,
+            job: job.job,
+            salary: job.salary,
+            date: job.date,
+            notes: job.notes
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then((res) => res.json())
+    .then((resJson) => {
+        // console.log(resJson)
+        const copyJobs = [...this.state.jobs];
+        const findIndex = this.state.jobs.findIndex(
+            (job) => job._id === resJson._id
+        );
+        copyJobs[findIndex] = resJson
+        this.setState({
+            jobs: copyJobs,
+        });
+    });
+};
       
 
       handleDeleteJob = (id) => {
@@ -80,10 +109,18 @@ class JobList extends Component {
                 <td> {job.date} </td>
                 <td> {job.notes}</td>
                 <td>
-                <button onClick={()=> this.handleToggleOffer(job)}
-                className={job.offer ? 'offer' : null}> Received Offer </button> 
+                  <td>
+                
+                  </td>
+                <button 
+                onClick={()=> this.handleToggleOffer(job)}
+                className={job._id ? 'offer' : null}> Received Offer </button> 
                 </td>
                 <td onClick={()=> this.handleDeleteJob(job._id)}> ❌ </td>
+                <td>
+                  
+                </td>
+      
               </tr>
             )
           })}

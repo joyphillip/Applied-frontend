@@ -11,7 +11,7 @@ class JobsApi extends Component {
       appID:'app_id=97947723&',
       apiKey: `app_key=${process.env.REACT_APP_API_KEY}`,
       company: '&company=',
-      what: "what=",
+      what: "&what=tech",
       jobTitle: '',
       searchURL: ''
     }
@@ -28,7 +28,7 @@ class JobsApi extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     this.setState({
-      searchURL: this.state.baseURL + this.state.appID + this.state.apiKey + this.state.company + this.state.jobTitle
+      searchURL: this.state.baseURL + this.state.appID + this.state.apiKey + this.state.what + this.state.company + this.state.jobTitle
     }, () => {
       fetch(this.state.searchURL)
       .then(response => { return response.json() })
@@ -41,7 +41,7 @@ class JobsApi extends Component {
   }
 
   render() {
-    // console.log(this.state)
+    console.log(this.state)
     return (
       <div>
         <form onSubmit={this.handleSubmit}>

@@ -9,7 +9,6 @@ class CreateJob extends Component {
             job: '',
             salary: '',
             date: '',
-            // offer:'',
             notes:''
         })
     }
@@ -27,7 +26,6 @@ class CreateJob extends Component {
                 job: this.state.job,
                 salary: this.state.salary,
                 date: this.state.date,
-                // offer: this.state.offer,
                 notes: this.state.notes
             }), 
             headers: {
@@ -42,7 +40,6 @@ class CreateJob extends Component {
                 job: '',
                 salary: '',
                 date: '',
-                // offer:'',
                 notes:''
             })
           })
@@ -59,8 +56,6 @@ class CreateJob extends Component {
                 <input type="text" id="salary" name="salary" onChange={this.onChange} value={this.state.salary} placeholder="Salary!"/>
                 <label htmlFor="date"></label>
                 <input type="text" id="date" name="date" onChange={this.onChange} value={this.state.date} placeholder="Date Applied?"/>
-                {/* <label htmlFor="offer">Offer?</label>
-                <input type="text" id="offer" name="offer" onChange={this.onChange} value={this.state.offer} placeholder="Y/N"/> */}
                 <label htmlFor="notes"></label>
                 <input type="text" id="notes" name="notes" onChange={this.onChange} value={this.state.notes} placeholder="Add Notes!"/>
                 <input type="submit" value="Add a New Job"/>

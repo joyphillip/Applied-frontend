@@ -130,5 +130,8 @@ td:nth-of-type(6) {
 .offer {
   background-color: rgb(18, 118, 66);
   transition: .3s;
+  font-weight: bold;
+  
+  
 }
 

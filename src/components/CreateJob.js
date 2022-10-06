@@ -47,19 +47,22 @@ class CreateJob extends Component {
 
     render(){
         return (
-            <form onSubmit={this.onSubmit}>
-                <label htmlFor="company"></label>
-                <input type="text" id="company" name="company" onChange={this.onChange} value={this.state.company} placeholder="Company Name?"/>
-                <label htmlFor="job"></label>
-                <input type="text" id="job" name="job" onChange={this.onChange} value={this.state.job} placeholder="Job Title?"/>
-                <label htmlFor="salary"></label>
-                <input type="text" id="salary" name="salary" onChange={this.onChange} value={this.state.salary} placeholder="Salary!"/>
-                <label htmlFor="date"></label>
-                <input type="text" id="date" name="date" onChange={this.onChange} value={this.state.date} placeholder="Date Applied?"/>
-                <label htmlFor="notes"></label>
-                <input type="text" id="notes" name="notes" onChange={this.onChange} value={this.state.notes} placeholder="Add Notes!"/>
-                <input type="submit" value="Add a New Job"/>
-            </form>
+            <div className="createContainer">
+                <h2>Create A New application</h2>
+                <form className="createNewForm" onSubmit={this.onSubmit}>
+                    <label htmlFor="company"></label>
+                    <input type="text" id="company" name="company" onChange={this.onChange} value={this.state.company} placeholder="Company Name?"/>
+                    <label htmlFor="job"></label>
+                    <input type="text" id="job" name="job" onChange={this.onChange} value={this.state.job} placeholder="Job Title?"/>
+                    <label htmlFor="salary"></label>
+                    <input type="text" id="salary" name="salary" onChange={this.onChange} value={this.state.salary} placeholder="Salary!"/>
+                    <label htmlFor="date"></label>
+                    <input type="text" id="date" name="date" onChange={this.onChange} value={this.state.date} placeholder="Date Applied?"/>
+                    <label htmlFor="notes"></label>
+                    <input type="text" id="notes" name="notes" onChange={this.onChange} value={this.state.notes} placeholder="Add Notes!"/>
+                    <input type="submit" value="Add a New Job"/>
+                </form>
+            </div>
         )
     }
 }

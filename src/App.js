@@ -117,8 +117,8 @@ class App extends Component {
   render() {
     return (
       <div className='container'>
-      <h1> Welcome to Applied! </h1>
-      {/* <Nav loginUser={this.loginUser} register={this.register}/> */}
+      <h1 className='head'> Applied. </h1>
+      {/* <Register /> */}
       {<CreateJob handleAddJob={this.handleAddJob}/>}
       <JobList handleToggleOffer={this.handleToggleOffer}/>
       <JobsApi />

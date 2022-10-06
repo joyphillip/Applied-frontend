@@ -4,11 +4,11 @@ class Jobinfo extends Component {
   render() {
     
     return (
-      <div>
-         <div>
+      <div className='jobInfoDiv'>
+         <div className='jobInformation'>
              {/* <h1>Total Results: {this.props.companyName.count}</h1> */}
        
-             <h1>Job Type: {this.props.companyName.results[0].category.label}</h1>
+             <h2>{this.props.companyName.results[0].category.label}</h2>
         
              <p>{this.props.companyName.results[0].description}</p>
         
@@ -16,14 +16,14 @@ class Jobinfo extends Component {
 
              <p>Location: {this.props.companyName.results[0].location.display_name}</p>
 
-             <p>Company url: {this.props.companyName.results[0].redirect_url}</p>
+             <p>Company url: <a href={this.props.companyName.results[0].redirect_url}> Link </a></p>
 
              <p>Job Title: {this.props.companyName.results[0].title}</p> 
              </div>
              <br></br>
              <div>
         
-             <h1>Job Type: {this.props.companyName.results[1].category.label}</h1>
+             <h2>Job Type: {this.props.companyName.results[1].category.label}</h2>
              <br></br>
              <p>  {this.props.companyName.results[1].description}</p>
                 <br></br>
@@ -31,14 +31,14 @@ class Jobinfo extends Component {
 
              <p>Location: {this.props.companyName.results[1].location.display_name}</p>
 
-             <p>Company url: {this.props.companyName.results[1].redirect_url}</p>
+             <p>Company url: <a href={this.props.companyName.results[1].redirect_url}> Link </a></p>
 
              <p>Job Title: {this.props.companyName.results[1].title}</p> 
              </div>
                 <br></br>
              <div>
         
-             <h1>Job Type: {this.props.companyName.results[2].category.label}</h1>
+             <h2>Job Type: {this.props.companyName.results[2].category.label}</h2>
              <br></br>
              <p>Job  {this.props.companyName.results[2].description}</p>
              <br></br>
@@ -46,14 +46,14 @@ class Jobinfo extends Component {
 
              <p>Location: {this.props.companyName.results[2].location.display_name}</p>
 
-             <p>Company url: {this.props.companyName.results[2].redirect_url}</p>
+             <p>Company url: <a href={this.props.companyName.results[2].redirect_url}> Link </a></p>
 
              <p>Job Title: {this.props.companyName.results[2].title}</p> 
              </div>
                 <br></br>
              <div>
             
-                <h1>Job Type: {this.props.companyName.results[3].category.label}</h1>
+                <h2>Job Type: {this.props.companyName.results[3].category.label}</h2>
                 <br></br>
                 <p>  {this.props.companyName.results[3].description}</p>
                 <br></br>
@@ -61,14 +61,14 @@ class Jobinfo extends Component {
 
                 <p>Location: {this.props.companyName.results[3].location.display_name}</p>
 
-                <p>Company url: {this.props.companyName.results[3].redirect_url}</p>
+                <p>Company url: <a href={this.props.companyName.results[3].redirect_url}> Link </a></p>
 
                 <p>Job Title: {this.props.companyName.results[3].title}</p> 
                 </div>
                     <br></br>
                 <div>
                 
-                <h1>Job Type: {this.props.companyName.results[4].category.label}</h1>
+                <h2>Job Type: {this.props.companyName.results[4].category.label}</h2>
                 <br></br>
                 <p>  {this.props.companyName.results[4].description}</p>
                 <br></br>
@@ -76,7 +76,7 @@ class Jobinfo extends Component {
 
                 <p>Location: {this.props.companyName.results[4].location.display_name}</p>
 
-                <p>Company url: {this.props.companyName.results[4].redirect_url}</p>
+                <p>Company url: <a href={this.props.companyName.results[4].redirect_url}> Link </a></p>
 
                 <p>Job Title: {this.props.companyName.results[4].title}</p> 
                 </div>

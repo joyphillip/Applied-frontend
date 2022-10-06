@@ -43,9 +43,11 @@ class JobsApi extends Component {
   render() {
     // console.log(this.state)
     return (
-      <div>
+      <div className='apiDiv'>
+        <br/>
+        <h2>Find Positions By Company</h2>
         <form onSubmit={this.handleSubmit}>
-          <label>Job Search: </label>
+          <label></label>
           <input
             id="jobTitle"
             type="text"

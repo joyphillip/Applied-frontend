@@ -86,21 +86,6 @@ class App extends Component {
     this.setState({jobs: copyJobs})
   }
 
-  // handleToggleOffer = (job) => {
-  //   fetch(baseURL + '/jobs/' + job._id, {
-  //     method:'PUT',
-  //     body: JSON.stringify({offer: !job.offer}),
-  //     headers: {
-  //       'Content-type' : 'application/json'
-  //     }
-  //   }).then(res => res.json())
-  //   .then(resJson => {
-  //     const copyJobs = [...this.state.jobs]
-  //     const findIndex = this.state.jobs.findIndex(job => job._id === resJson._id)
-  //     copyJobs[findIndex].offer = resJson.offer
-  //     this.setState({jobs: copyJobs})
-  //   })
-  // }
   handleToggleOffer = (job) => {
     fetch('http://localhost:3000/jobs/' + job._id, {
       method: 'PUT',
@@ -127,7 +112,6 @@ class App extends Component {
       this.setState({jobs: copyJobs})
     })
   }
-
 
 
   render() {

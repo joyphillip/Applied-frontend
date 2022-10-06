@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+
 class JobList extends Component {
     constructor(props) {
         super(props)
@@ -38,7 +39,6 @@ class JobList extends Component {
     }
       }).then(res => res.json())
       .then(resJson => {
-        console.log('resJson', resJson)
        const copyJobs = [...this.state.jobs]
         const findIndex = this.state.jobs.findIndex((job) => job._id === resJson._id)
         copyJobs[findIndex].offer = resJson.offer
@@ -58,6 +58,29 @@ class JobList extends Component {
         })
       }
 
+    //   handleUpdateJob = (job) => {
+    //     fetch('http://localhost:3000/jobs/' + job._id, {
+    //     method: 'PUT',
+    //     body: JSON.stringify({
+    //       company: '',
+    //       job: '',
+    //       salary: '',
+    //       notes: ''
+    //     }),
+    //     headers: {
+    //       'Content-Type' : 'application/json'
+    // }
+    //   }).then(res => res.json())
+    //   .then(resJson => {
+    //    const copyJobs = [...this.state.jobs]
+    //     const findIndex = this.state.jobs.findIndex((job) => job._id === resJson._id)
+    //     copyJobs[findIndex].offer = resJson.offer
+    //     this.setState({jobs: copyJobs})
+    //   })
+    // }
+
+
+
     render() {
         return (
             <table>
@@ -67,26 +90,31 @@ class JobList extends Component {
                 <th>Job Title</th>
                 <th>Salary</th>
                 <th>Date</th>
-                <th>Notes</th>
                 <th>Offer?</th>
+                <th>Notes</th>
+                
                 </tr>
                 <tbody>
-                {this.state.jobs.map(job => {
-            return (
+                {this.state.jobs.map((job) => (
               <tr key={job._id}>
                 <td> {job.company}</td>
                 <td> {job.job}</td>
                 <td> {job.salary}</td>
                 <td> {job.date} </td>
-                <td> {job.notes}</td>
                 <td>
                 <button onClick={()=> this.handleToggleOffer(job)}
-                className={job.offer ? 'offer' : null}> Received Offer </button> 
+                className={job.offer ? 'offer' : null}> Offer Received </button> 
                 </td>
+                <td> {job.notes}</td>
+                {/* <td onClick={()=> this.handleUpdatJob(job._id)}> */}
+                <td>
+                  <button> Edit </button>
+                  </td>
+                {/* </td> */}
                 <td onClick={()=> this.handleDeleteJob(job._id)}> ❌ </td>
               </tr>
-            )
-          })}
+            
+          ))}
                 </tbody>
             </table>
         )

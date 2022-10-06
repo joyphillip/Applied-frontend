@@ -27,33 +27,24 @@ class JobList extends Component {
         })
       }
 
-    //   handleUpdateJob = (id) => {
-    //     fetch('http://localhost:3000/jobs/' + id, {
-    //         method: 'PUT',
-    //         body: JSON.stringify({
-    //             company: this.state.company,
-    //             job: this.state.job,
-    //             salary: this.state.salary,
-    //             date: this.state.date,
-    //             offer: this.state.offer,
-    //             notes: this.state.notes
-    //         }), 
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         }
-    //     }).then (res => res.json())
-    //       .then (resJson => {
-    //         console.log('UpdatedJob - resJson', resJson)
-    //         this.setState({
-    //             company: '',
-    //             job: '',
-    //             salary: '',
-    //             date: '',
-    //             offer:'',
-    //             notes:''
-    //         })
-    //       })
-    // }
+
+
+    handleToggleOffer = (job) => {
+      fetch('http://localhost:3000/jobs/' + job._id, {
+        method: 'PUT',
+        body: JSON.stringify({offer: !job.offer}),
+        headers: {
+          'Content-Type' : 'application/json'
+    }
+      }).then(res => res.json())
+      .then(resJson => {
+        console.log('resJson', resJson)
+       const copyJobs = [...this.state.jobs]
+        const findIndex = this.state.jobs.findIndex((job) => job._id === resJson._id)
+        copyJobs[findIndex].offer = resJson.offer
+        this.setState({jobs: copyJobs})
+      })
+    }
       
 
       handleDeleteJob = (id) => {
@@ -69,6 +60,7 @@ class JobList extends Component {
 
     render() {
         return (
+          <div className='jobDiv'>
             <table className='jobForm'>
                 <h2> All Jobs </h2>
                 <tr>
@@ -76,25 +68,29 @@ class JobList extends Component {
                 <th>Job Title</th>
                 <th>Salary</th>
                 <th>Date</th>
-                <th>Offer?</th>
                 <th>Notes</th>
+                <th>Offer?</th>
                 </tr>
                 <tbody>
                 {this.state.jobs.map(job => {
-            return (
-              <tr key={job._id}>
+                  return (
+                    <tr key={job._id}>
                 <td> {job.company}</td>
                 <td> {job.job}</td>
                 <td> {job.salary}</td>
                 <td> {job.date} </td>
-                <td> {job.offer}</td>
                 <td> {job.notes}</td>
+                <td>
+                <button onClick={()=> this.handleToggleOffer(job)}
+                className={job.offer ? 'offer' : null}> Received Offer </button> 
+                </td>
                 <td className='deleteButton' onClick={()=> this.handleDeleteJob(job._id)}> Delete </td>
               </tr>
             )
           })}
                 </tbody>
             </table>
+          </div>
         )
     }
 }

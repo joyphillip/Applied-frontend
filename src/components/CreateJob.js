@@ -45,6 +45,10 @@ class CreateJob extends Component {
           })
     }
 
+    refreshPage = () => {
+        window.location.reload()
+    }
+
     render(){
         return (
             <div className="createContainer">
@@ -60,7 +64,7 @@ class CreateJob extends Component {
                     <input type="text" id="date" name="date" onChange={this.onChange} value={this.state.date} placeholder="Date Applied?"/>
                     <label htmlFor="notes"></label>
                     <input type="text" id="notes" name="notes" onChange={this.onChange} value={this.state.notes} placeholder="Add Notes!"/>
-                    <input type="submit" value="Add a New Job"/>
+                    <input type="submit" value="Add a New Job" onClick={this.refreshPage}/>
                 </form>
             </div>
         )

@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 import './App.css';
 import CreateJob from './components/CreateJob';
 import JobList from './components/JobList';
-// import Register from './Nav/Register';
-import Nav from './Nav/Nav.js'
 import JobsApi from './api/JobsApi'
 
 
@@ -118,7 +116,6 @@ class App extends Component {
     return (
       <div className='container'>
       <h1 className='head'> Applied. </h1>
-      {/* <Register /> */}
       {<CreateJob handleAddJob={this.handleAddJob}/>}
       <JobList handleToggleOffer={this.handleToggleOffer}/>
       <JobsApi />

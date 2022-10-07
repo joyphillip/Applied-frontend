@@ -58,28 +58,6 @@ class JobList extends Component {
         })
       }
 
-    //   handleUpdateJob = (job) => {
-    //     fetch('http://localhost:3000/jobs/' + job._id, {
-    //     method: 'PUT',
-    //     body: JSON.stringify({
-    //       company: '',
-    //       job: '',
-    //       salary: '',
-    //       notes: ''
-    //     }),
-    //     headers: {
-    //       'Content-Type' : 'application/json'
-    // }
-    //   }).then(res => res.json())
-    //   .then(resJson => {
-    //    const copyJobs = [...this.state.jobs]
-    //     const findIndex = this.state.jobs.findIndex((job) => job._id === resJson._id)
-    //     copyJobs[findIndex].offer = resJson.offer
-    //     this.setState({jobs: copyJobs})
-    //   })
-    // }
-
-
 
     render() {
         return (
@@ -96,9 +74,6 @@ class JobList extends Component {
                 
                 </tr>
                 <tbody>
-                {/* {this.state.jobs.map(job => {
-                  // return (
-                    <tr key={job._id}> */}
                 {this.state.jobs.map((job) => (
               <tr key={job._id}>
                 <td> {job.company}</td>
@@ -109,13 +84,8 @@ class JobList extends Component {
                 <button onClick={()=> this.handleToggleOffer(job)}
                 className={job.offer ? 'offer' : null}> Offer Received </button> 
                 </td>
-                <td className='deleteButton' onClick={()=> this.handleDeleteJob(job._id)}> Delete </td>
                 <td> {job.notes}</td>
-                {/* <td onClick={()=> this.handleUpdatJob(job._id)}> */}
-                <td>
-                  <button> Edit </button>
-                  </td>
-                {/* </td> */}
+                <td className='deleteButton' onClick={()=> this.handleDeleteJob(job._id)}> Delete </td>
               </tr>            
                 ))}
                 </tbody>

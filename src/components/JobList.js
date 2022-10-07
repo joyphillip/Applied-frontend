@@ -64,6 +64,7 @@ class JobList extends Component {
           <div className='jobDiv'>
             <table className='jobForm'>
                 <h2> All Jobs </h2>
+                <hr/>
                 <tr>
                 <th>Company</th>
                 <th>Job Title</th>
@@ -85,6 +86,7 @@ class JobList extends Component {
                 className={job.offer ? 'offer' : null}> Offer Received </button> 
                 </td>
                 <td> {job.notes}</td>
+                <td><button className='edit'> Edit </button></td>
                 <td className='deleteButton' onClick={()=> this.handleDeleteJob(job._id)}> Delete </td>
               </tr>            
                 ))}

@@ -46,6 +46,7 @@ class JobsApi extends Component {
       <div className='apiDiv'>
         <br/>
         <h2>Find Positions By Company</h2>
+        <hr className='apiLine'/>
         <form onSubmit={this.handleSubmit}>
           <label></label>
           <input

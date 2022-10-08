@@ -49,12 +49,14 @@ table {
 }
 .jobInfoDiv{
   width: 50%;
+  background-color: #B3F2DD;
+  border-radius: 5px;
 }
 .apiDiv{
   position:absolute;
   width: 100%;
   height: 100%;
-  top: 60%;
+  top: 70%;
 }
 .createContainer{
   position: absolute;
@@ -126,12 +128,37 @@ td:nth-of-type(5),
 td:nth-of-type(6) {
   cursor: pointer;
 }
-
+.edit{
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: transparent;
+}
+.edit:hover{
+  cursor:pointer;
+}
 .offer {
   background-color: rgb(18, 118, 66);
   transition: .3s;
   font-weight: bold;
-  
-  
 }
-
+.createLine{
+  width: 50%;
+  float: left;
+}
+.apiLine{
+  width: 50%;
+  float: left;
+}
+.apiInfo0{
+  background-color:#8D99AE;
+  border-radius: 5px;
+  align-content: center;
+}
+.apiInfoBody0{
+  background-color:#8D99AE;
+  border-radius: 5px;
+}
+.apiTitle{
+  text-align: center;
+}

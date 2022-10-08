@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+
 class JobList extends Component {
     constructor(props) {
         super(props)
@@ -26,35 +27,6 @@ class JobList extends Component {
           this.setState({jobs: data.jobs})
         })
       }
-
-
-  handleEditJobs = (job) => {
-    fetch('http://localhost:3000/jobs/' + job._id, {
-        method: 'PUT',
-        body: JSON.stringify({
-            company: job.company,
-            job: job.job,
-            salary: job.salary,
-            date: job.date,
-            notes: job.notes
-        }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then((res) => res.json())
-    .then((resJson) => {
-        // console.log(resJson)
-        const copyJobs = [...this.state.jobs];
-        const findIndex = this.state.jobs.findIndex(
-            (job) => job._id === resJson._id
-        );
-        copyJobs[findIndex] = resJson
-        this.setState({
-            jobs: copyJobs,
-        });
-    });
-};
       
 
       handleDeleteJob = (id) => {
@@ -68,45 +40,89 @@ class JobList extends Component {
         })
       }
 
+       handleToggleOffer = (job) => {
+    fetch('http://localhost:3000/jobs/' + job._id, {
+      method: 'PUT',
+      body: JSON.stringify({offer: !job.offer}),
+      headers: {
+        'Content-Type' : 'application/json'
+  }
+    }).then(res => res.json())
+    .then(resJson => {
+     const copyJobs = [...this.state.jobs]
+      const findIndex = this.state.jobs.findIndex((job) => job._id === resJson._id)
+      copyJobs[findIndex].offer = resJson.offer
+      this.setState({jobs: copyJobs})
+    })
+  }
+
+    handleEditJobs = (job) => {
+    fetch('http://localhost:3000/jobs/' + job._id, {
+        method: 'PUT',
+        body: JSON.stringify({
+            notes: job.notes
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then((res) => res.json())
+    .then((resJson) => {
+        // console.log(resJson)
+        const copyJobs = [...this.state.jobs];
+        const findIndex = this.state.jobs.findIndex(
+            (job) => job._id === resJson._id
+        );
+        copyJobs[findIndex] = resJson.notes
+        this.setState({
+            jobs: copyJobs,
+        });
+    });
+};
+
+
+
+
     render() {
         return (
-            <table>
-                <caption> All Jobs </caption>
+          <div className='jobDiv'>
+            <table className='jobForm'>
+                <h2> All Jobs </h2>
                 <tr>
                 <th>Company</th>
                 <th>Job Title</th>
                 <th>Salary</th>
                 <th>Date</th>
-                <th>Notes</th>
                 <th>Offer?</th>
+                <th>Notes</th>
+                
                 </tr>
                 <tbody>
-                {this.state.jobs.map(job => {
-            return (
+                {/* {this.state.jobs.map(job => {
+                  // return (
+                    <tr key={job._id}> */}
+                {this.state.jobs.map((job) => (
               <tr key={job._id}>
                 <td> {job.company}</td>
                 <td> {job.job}</td>
                 <td> {job.salary}</td>
                 <td> {job.date} </td>
+                <td>
+                <button onClick={()=> this.handleToggleOffer(job)}
+                className={job.offer ? 'offer' : null}> Offer Received </button> 
+                </td>
                 <td> {job.notes}</td>
-                <td>
-                  <td>
+                <td className='deleteButton' onClick={()=> this.handleDeleteJob(job._id)}> Delete </td>
                 
-                  </td>
-                <button 
-                onClick={()=> this.handleToggleOffer(job)}
-                className={job._id ? 'offer' : null}> Received Offer </button> 
-                </td>
-                <td onClick={()=> this.handleDeleteJob(job._id)}> ❌ </td>
                 <td>
-                  
-                </td>
-      
-              </tr>
-            )
-          })}
+                  <button> Edit </button>
+                  </td>
+                {/* </td> */}
+              </tr>            
+                ))}
                 </tbody>
             </table>
+          </div>
         )
     }
 }

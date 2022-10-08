@@ -23,42 +23,42 @@ class App extends Component {
     this.getJobs()
   }
 
-  loginUser = (e) => {
-    e.preventDefault()
-    fetch(baseURL + '/users/login', {
-      method: 'POST',
-      body: JSON.stringify({
-        username: e.target.username.value,
-        password: e.target.password.value
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      credentials: "include"
-    }).then(res => res.json())
-    .then(resJson => {
-      console.log(resJson)
-      this.getJobs()
-    })
-  }
+  // loginUser = (e) => {
+  //   e.preventDefault()
+  //   fetch(baseURL + '/users/login', {
+  //     method: 'POST',
+  //     body: JSON.stringify({
+  //       username: e.target.username.value,
+  //       password: e.target.password.value
+  //     }),
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     credentials: "include"
+  //   }).then(res => res.json())
+  //   .then(resJson => {
+  //     console.log(resJson)
+  //     this.getJobs()
+  //   })
+  // }
 
-  register = (e) => {
-    e.preventDefault()
-    fetch(baseURL + '/users/signup', {
-      method: 'POST',
-      body: JSON.stringify({
-        username: e.target.username.value,
-        password: e.target.password.value
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then(res => res.json())
-    .then(resJson => {
-      console.log(resJson)
-      this.getJobs()
-    })
-  }
+  // register = (e) => {
+  //   e.preventDefault()
+  //   fetch(baseURL + '/users/signup', {
+  //     method: 'POST',
+  //     body: JSON.stringify({
+  //       username: e.target.username.value,
+  //       password: e.target.password.value
+  //     }),
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     }
+  //   }).then(res => res.json())
+  //   .then(resJson => {
+  //     console.log(resJson)
+  //     this.getJobs()
+  //   })
+  // }
 
 
   getJobs = () => {
@@ -86,31 +86,26 @@ class App extends Component {
     this.setState({jobs: copyJobs})
   }
 
-  
-  handleToggleOffer = (job) => {
-    fetch('http://localhost:3000/jobs/' + job._id, {
-      method: 'PUT',
-      body: JSON.stringify({offer: !job.offer}),
-      headers: {
-        'Content-Type' : 'application/json'
-  }
-    }).then(res => res.json())
-    .then(resJson => {
-     const copyJobs = [...this.state.jobs]
-      const findIndex = this.state.jobs.findIndex((job) => job._id === resJson._id)
-      copyJobs[findIndex].offer = resJson.offer
-      this.setState({jobs: copyJobs})
-    })
-  }
+  // handleToggleOffer = (job) => {
+  //   fetch('http://localhost:3000/jobs/' + job._id, {
+  //     method: 'PUT',
+  //     body: JSON.stringify({offer: !job.offer}),
+  //     headers: {
+  //       'Content-Type' : 'application/json'
+  // }
+  //   }).then(res => res.json())
+  //   .then(resJson => {
+  //    const copyJobs = [...this.state.jobs]
+  //     const findIndex = this.state.jobs.findIndex((job) => job._id === resJson._id)
+  //     copyJobs[findIndex].offer = resJson.offer
+  //     this.setState({jobs: copyJobs})
+  //   })
+  // }
 
 //   handleEditJobs = (job) => {
 //     fetch(baseURL + '/jobs/' + job._id, {
 //         method: 'PUT',
 //         body: JSON.stringify({
-//             company: job.company,
-//             job: job.job,
-//             salary: job.salary,
-//             date: job.date,
 //             notes: job.notes
 //         }),
 //         headers: {
@@ -131,6 +126,7 @@ class App extends Component {
 //     });
 // };
 
+
   handleDeleteJob = (id) => {
     fetch(baseURL + '/jobs/' + id, {
       method: 'DELETE'
@@ -143,14 +139,15 @@ class App extends Component {
   }
 
 
-
   render() {
     return (
       <div className='container'>
-      <h1> Welcome to Applied! </h1>
-      {/* <Nav loginUser={this.loginUser} register={this.register}/> */}
+      <h1 className='head'> Applied. </h1>
+      {/* <Register /> */}
       {<CreateJob handleAddJob={this.handleAddJob}/>}
-      <JobList handleToggleOffer={this.handleToggleOffer}/>
+      <JobList 
+      handleToggleOffer={this.handleToggleOffer}
+      handleEditJobs={this.handleEditJobs}/>
       <JobsApi />
       </div>
     )
